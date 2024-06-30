@@ -76,8 +76,12 @@ def harvest(pages):
                     continue
 
                 #cur = con.cursor()
-                sql.execute("INSERT INTO new VALUES ('{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch))
+                sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch))
                 #con.commit()
+    
+    result = { "status":"ok", "msg":"Reloaded" }
+    return json.dumps(result) + "\n"
+
 
     
     # WOOP WOOP TEST ONLY!!
