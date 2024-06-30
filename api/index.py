@@ -23,31 +23,20 @@ def latest(version):
         port = 5432
     )
 
-    #'SELECT DISTINCT(patch) FROM windows WHERE release = "{release}" ORDER BY CAST(patch AS INTEGER) DESC'.format(release = version))
+    sql = connection.cursor()
+    sql.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
 
-    #qqq = connection.run("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
-
-    cursor = connection.cursor()
-    cursor.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
-    qqq = cursor.fetchone()
-    # [1]
+    throwaway = sql.fetchone()[0]   # Requirement is latest-mnus-one
+    latest_patch = sql.fetchone()[0]
+    prior_patch = sql.fetchone()[0]
 
     connection.close()
-
-    #con = sqlite3.connect('windows.db')
-    #cur = con.cursor()
-    #
-    #sql = cur.execute('SELECT DISTINCT(patch) FROM windows WHERE release = "{release}" ORDER BY CAST(patch AS INTEGER) DESC'.format(release = version))
-    #
-    #throwaway = sql.fetchone()[0]   # Requirement is latest-mnus-one
-    #latest_patch = sql.fetchone()[0]
-    #prior_patch = sql.fetchone()[0]
-
-    return qqq
 
     result = { "release":version, "latest_patch":latest_patch, "previous_patch":prior_patch, "previous_base":"10.0." + version + "." + prior_patch, "latest_base":"10.0." + version + "." + latest_patch  }
 
     return json.dumps(result) + "\n"
+
+
 
 
 @app.route('/about')
