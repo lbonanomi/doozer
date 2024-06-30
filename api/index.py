@@ -24,8 +24,10 @@ def latest(version):
     )
 
     #'SELECT DISTINCT(patch) FROM windows WHERE release = "{release}" ORDER BY CAST(patch AS INTEGER) DESC'.format(release = version))
+
+
     
-    qqq = connection.run('SELECT DISTINCT(patch) FROM windows WHERE release = "{release}" ORDER BY CAST(patch AS INTEGER) DESC'.format(release = version))
+    qqq = connection.run("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
 
     connection.close()
 
