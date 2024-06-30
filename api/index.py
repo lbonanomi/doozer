@@ -31,7 +31,7 @@ def harvest(pages):
         port = 5432
         )
     except Exception as e:
-        return("COULD NOT MAKE A HANDLE")
+        return("COULD NOT MAKE A HANDLE " + str(e))
 
     sql = connection.cursor()
 
