@@ -31,7 +31,8 @@ def harvest(pages):
     )
 
     sql = connection.cursor()
-    sql.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
+    
+    #sql.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
 
     
     # Copy the existing table to a backup
@@ -74,9 +75,9 @@ def harvest(pages):
                 except IndexError:
                     continue
 
-                cur = con.cursor()
-                cur.execute("INSERT INTO new VALUES ('{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch))
-                con.commit()
+                #cur = con.cursor()
+                sql.execute("INSERT INTO new VALUES ('{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch))
+                #con.commit()
 
     
     # WOOP WOOP TEST ONLY!!
@@ -84,30 +85,30 @@ def harvest(pages):
 
     # Now that table "new" is built, compare it with table "windows"
     #
-    sql_diff = cur.execute("select COUNT(DISTINCT patch) from windows where patch not in (SELECT patch FROM new)")
-    diff = sql_diff.fetchone()[0]
-
-    sql_tot = cur.execute("select COUNT(PATCH) from windows")
-    total = sql_tot.fetchone()[0]
-
-    pct = (diff * 100) / total
-
-    print(str(pct), "% difference between stored and harvested versions")
-
-    if pct > 2:
-        cur = con.cursor()
-        cur.execute("DROP TABLE new")
-
-        result = { "status":"err", "err":"delta", "msg":"Too much difference between stored and colected patch versions. Aborting update." }
-        return (json.dumps(result) + "\n", 500)
-
-    else:
-        cur = con.cursor()
-        cur.execute("DROP TABLE WINDOWS")
-        cur.execute("ALTER TABLE new RENAME TO windows")
-
-        result = { "status":"ok", "msg":"Reloaded" }
-        return (json.dumps(result) + "\n", 200)
+    #sql_diff = cur.execute("select COUNT(DISTINCT patch) from windows where patch not in (SELECT patch FROM new)")
+    #diff = sql_diff.fetchone()[0]
+    #
+    #sql_tot = cur.execute("select COUNT(PATCH) from windows")
+    #total = sql_tot.fetchone()[0]
+    #
+    #pct = (diff * 100) / total
+    #
+    #print(str(pct), "% difference between stored and harvested versions")
+    #
+    #if pct > 2:
+    #    cur = con.cursor()
+    #    cur.execute("DROP TABLE new")
+    #
+    #    result = { "status":"err", "err":"delta", "msg":"Too much difference between stored and colected patch versions. Aborting update." }
+    #    return (json.dumps(result) + "\n", 500)
+    #
+    #else:
+    #    cur = con.cursor()
+    #    cur.execute("DROP TABLE WINDOWS")
+    #    cur.execute("ALTER TABLE new RENAME TO windows")
+    #
+    #    result = { "status":"ok", "msg":"Reloaded" }
+    #    return (json.dumps(result) + "\n", 200)
 
 
 @app.route('/refresh', methods=['PUT'])
