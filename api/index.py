@@ -31,21 +31,16 @@ def harvest(pages):
     )
 
     sql = connection.cursor()
-    
-    #sql.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
-
-    
-    # Copy the existing table to a backup
-    #
-    #cur.execute("CREATE TABLE new AS SELECT * FROM windows WHERE 0")
-    #
-    #cur.execute("DELETE FROM windows") # NOT YET!
 
     for page in pages:
         data = requests.get(page, timeout=10).text
 
+        return "GOT HTML"
+
         soup = BeautifulSoup(data, 'html.parser')
 
+        return "SOUP'S ON!"
+        
         for table in soup.find_all('table'):
 
             rows = table.find_all('tr')
@@ -116,8 +111,8 @@ def harvest(pages):
 
 @app.route('/refresh', methods=['PUT'])
 def refresh():
-    #x = harvest(pages)
-    return "Would-have reloaded from source page(s)\n"
+    x = harvest(pages)
+    #return "Would-have reloaded from source page(s)\n"
     return x
 
 
