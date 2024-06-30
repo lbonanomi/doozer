@@ -22,13 +22,16 @@ def harvest(pages):
     #con = sqlite3.connect('windows.db')
     #cur = con.cursor()
 
-    connection = pg8000.dbapi.Connection(
+    try:
+        connection = pg8000.dbapi.Connection(
         host = os.environ['POSTGRES_HOST'],
         user = os.environ['POSTGRES_USER'],
         password = os.environ['POSTGRES_PASSWORD'],
         database = os.environ['POSTGRES_DATABASE'],
         port = 5432
-    )
+        )
+    except Exception as e:
+        return("COULD NOT MAKE A HANDLE")
 
     sql = connection.cursor()
 
