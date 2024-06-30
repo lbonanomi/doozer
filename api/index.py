@@ -117,7 +117,7 @@ def harvest(pages):
 @app.route('/refresh', methods=['PUT'])
 def refresh():
     #x = harvest(pages)
-    return "Would-have reloaded from source page(s)\n", 201
+    return "Would-have reloaded from source page(s)\n"
     #return x
 
 
@@ -137,11 +137,6 @@ def latest(version):
     throwaway = sql.fetchone()[0]   # Requirement is latest-minus-one
     latest_patch = sql.fetchone()[0]
     prior_patch = sql.fetchone()[0]
-
-
-    #version="DUMMY"
-    #latest_patch="DUMMY"
-    #prior_patch="DUMMY"
     
     
     connection.close()
