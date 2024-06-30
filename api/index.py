@@ -75,9 +75,8 @@ def harvest(pages):
                 except IndexError:
                     continue
 
-                #cur = con.cursor()
                 sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch))
-                #con.commit()
+
     
     result = { "status":"ok", "msg":"Reloaded" }
     return json.dumps(result) + "\n"
@@ -117,9 +116,9 @@ def harvest(pages):
 
 @app.route('/refresh', methods=['PUT'])
 def refresh():
-    x = harvest(pages)
-    #return "Reloaded from source page(s)\n", 201
-    return x
+    #x = harvest(pages)
+    return "Would-have reloaded from source page(s)\n", 201
+    #return x
 
 
 @app.route('/latest/<version>', methods=['GET'])
