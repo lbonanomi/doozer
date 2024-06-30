@@ -17,21 +17,10 @@ def home():
     return 'Hello, World!'
 
 
-def harvest(pages):
+def harvest(connection, pages):
     """Drop existing definitions and reload from pages"""
     #con = sqlite3.connect('windows.db')
     #cur = con.cursor()
-
-    try:
-        harvester_connection = pg8000.dbapi.Connection(
-        host = os.environ['POSTGRES_HOST'],
-        user = os.environ['POSTGRES_USER'],
-        password = os.environ['POSTGRES_PASSWORD'],
-        database = os.environ['POSTGRES_DATABASE'],
-        port = 5432
-        )
-    except Exception as e:
-        return e
 
     sql = harvester_connection.cursor()
 
@@ -114,22 +103,33 @@ def harvest(pages):
     #    return (json.dumps(result) + "\n", 200)
 
 
-@app.route('/refresh', methods=['PUT'])
-def refresh():
-    x = harvest(pages)
-    #return "Would-have reloaded from source page(s)\n"
-    return x
+# DRY
+#
 
-
-@app.route('/latest/<version>', methods=['GET'])
-def latest(version):
-    connection = pg8000.dbapi.Connection(
+connection = pg8000.dbapi.Connection(
         host = os.environ['POSTGRES_HOST'],
         user = os.environ['POSTGRES_USER'],
         password = os.environ['POSTGRES_PASSWORD'],
         database = os.environ['POSTGRES_DATABASE'],
         port = 5432
-    )
+)
+
+@app.route('/refresh', methods=['PUT'])
+def refresh(connection):
+    x = harvest(connection, pages)
+    #return "Would-have reloaded from source page(s)\n"
+    return x
+
+
+@app.route('/latest/<version>', methods=['GET'])
+def latest(connection, version):
+#    connection = pg8000.dbapi.Connection(
+#        host = os.environ['POSTGRES_HOST'],
+#        user = os.environ['POSTGRES_USER'],
+#        password = os.environ['POSTGRES_PASSWORD'],
+#        database = os.environ['POSTGRES_DATABASE'],
+#        port = 5432
+#    )
 
     sql = connection.cursor()
     sql.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
