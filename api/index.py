@@ -29,7 +29,7 @@ def latest(version):
 
     cursor = connection.cursor()
     cursor.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
-    print(cursor.fetchone())
+    qqq = cursor.fetchone()
     # [1]
 
     connection.close()
