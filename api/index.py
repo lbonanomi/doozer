@@ -32,6 +32,8 @@ def harvest(pages):
 
     sql = connection.cursor()
 
+    return "GOT A DB HANDLE"
+
     for page in pages:
         data = requests.get(page, timeout=10).text
 
