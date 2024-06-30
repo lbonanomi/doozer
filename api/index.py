@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET']))
 def home():
     return 'Hello, World!'
 
