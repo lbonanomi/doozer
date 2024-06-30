@@ -40,7 +40,7 @@ def latest(version):
     #latest_patch = sql.fetchone()[0]
     #prior_patch = sql.fetchone()[0]
 
-    return str(type(qqq))
+    return qqq.pop()
 
     result = { "release":version, "latest_patch":latest_patch, "previous_patch":prior_patch, "previous_base":"10.0." + version + "." + prior_patch, "latest_base":"10.0." + version + "." + latest_patch  }
 
