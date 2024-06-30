@@ -4,7 +4,7 @@ import json
 from flask import Flask
 import requests
 from bs4 import BeautifulSoup
-import pg8000.native
+import pg8000.dbapi
 
 app = Flask(__name__)
 
@@ -15,7 +15,7 @@ def home():
 
 @app.route('/latest/<version>', methods=['GET'])
 def latest(version):
-    connection = pg8000.native.Connection(
+    connection = pg8000.dbapi.Connection(
         host = os.environ['POSTGRES_HOST'],
         user = os.environ['POSTGRES_USER'],
         password = os.environ['POSTGRES_PASSWORD'],
@@ -25,9 +25,12 @@ def latest(version):
 
     #'SELECT DISTINCT(patch) FROM windows WHERE release = "{release}" ORDER BY CAST(patch AS INTEGER) DESC'.format(release = version))
 
+    #qqq = connection.run("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
 
-    
-    qqq = connection.run("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
+    cursor = connection.cursor()
+    cursor.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
+    print(cursor.fetchone())
+    # [1]
 
     connection.close()
 
