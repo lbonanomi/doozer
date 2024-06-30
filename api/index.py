@@ -135,12 +135,12 @@ def latest(version):
     sql.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
 
     #throwaway = sql.fetchone()[0]   # Requirement is latest-minus-one
-    #latest_patch = sql.fetchone()[0]
+    latest_patch = sql.fetchone()[0]
     #prior_patch = sql.fetchone()[0]
 
 
     version="DUMMY"
-    latest_patch="DUMMY"
+    #latest_patch="DUMMY"
     prior_patch="DUMMY"
     
     
