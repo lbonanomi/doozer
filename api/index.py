@@ -116,9 +116,9 @@ def harvest(pages):
 
 @app.route('/refresh', methods=['PUT'])
 def refresh():
-    #x = harvest(pages)
-    return "Would-have reloaded from source page(s)\n"
-    #return x
+    x = harvest(pages)
+    #return "Would-have reloaded from source page(s)\n"
+    return x
 
 
 @app.route('/latest/<version>', methods=['GET'])
