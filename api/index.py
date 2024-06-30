@@ -104,7 +104,6 @@ def harvest(connection, pages):
 
 @app.route('/refresh', methods=['PUT'])
 def refresh(connection):
-
     try:
         connection = pg8000.dbapi.Connection(
             host = os.environ['POSTGRES_HOST'],
@@ -113,10 +112,11 @@ def refresh(connection):
             database = os.environ['POSTGRES_DATABASE'],
             port = 5432
         )
+        x = harvest(connection, pages)
+
     except Exception:
-        return "I CHOKED IN REFRESH"
+        x = "I CHOKED IN REFRESH"
     
-    x = harvest(connection, pages)
     #return "Would-have reloaded from source page(s)\n"
     return x
 
