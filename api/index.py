@@ -22,7 +22,7 @@ def harvest(pages):
     #con = sqlite3.connect('windows.db')
     #cur = con.cursor()
 
-    con = pg8000.dbapi.Connection(
+    connection = pg8000.dbapi.Connection(
         host = os.environ['POSTGRES_HOST'],
         user = os.environ['POSTGRES_USER'],
         password = os.environ['POSTGRES_PASSWORD'],
