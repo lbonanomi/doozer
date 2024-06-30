@@ -23,7 +23,7 @@ def harvest(pages):
     #cur = con.cursor()
 
     try:
-        connection = pg8000.dbapi.Connection(
+        harvester_connection = pg8000.dbapi.Connection(
         host = os.environ['POSTGRES_HOST'],
         user = os.environ['POSTGRES_USER'],
         password = os.environ['POSTGRES_PASSWORD'],
@@ -31,9 +31,9 @@ def harvest(pages):
         port = 5432
         )
     except Exception as e:
-        return("COULD NOT MAKE A HANDLE " + str(e))
+        return e
 
-    sql = connection.cursor()
+    sql = harvester_connection.cursor()
 
     return "GOT A DB HANDLE"
 
