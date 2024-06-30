@@ -30,4 +30,4 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 
 
-`create table windows(service_option VARCHAR(50), availability_date DATE, build VARCHAR(50), patch VARCHAR(50) );`
+`create table windows(service_option VARCHAR(50), availability_date DATE, release VARCHAR(50), patch VARCHAR(50) );`
