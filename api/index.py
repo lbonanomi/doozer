@@ -15,6 +15,16 @@ def home():
 
 @app.route('/latest/<version>', methods=['GET'])
 def latest(version):
+    connection = pg8000.connect(
+        host = os.environ['POSTGRES_HOST'],
+        user = os.environ['POSTGRES_USER'],
+        password = os.environ['POSTGRES_PASSWORD'],
+        database = os.environ['POSTGRES_DATABASE'],
+        port = 5432
+    )
+
+
+    
     con = sqlite3.connect('windows.db')
     cur = con.cursor()
 
