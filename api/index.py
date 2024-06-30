@@ -19,10 +19,8 @@ def home():
 
 def harvest(connection, pages):
     """Drop existing definitions and reload from pages"""
-    #con = sqlite3.connect('windows.db')
-    #cur = con.cursor()
 
-    sql = harvester_connection.cursor()
+    #sql = harvester_connection.cursor()
 
     return "GOT A DB HANDLE"
 
@@ -106,13 +104,17 @@ def harvest(connection, pages):
 # DRY
 #
 
-connection = pg8000.dbapi.Connection(
+
+try:
+    connection = pg8000.dbapi.Connection(
         host = os.environ['POSTGRES_HOST'],
         user = os.environ['POSTGRES_USER'],
         password = os.environ['POSTGRES_PASSWORD'],
         database = os.environ['POSTGRES_DATABASE'],
         port = 5432
-)
+    )
+except Exception:
+    return "I CHOKED IN MAIN"
 
 @app.route('/refresh', methods=['PUT'])
 def refresh(connection):
