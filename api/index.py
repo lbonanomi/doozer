@@ -10,13 +10,13 @@ import pg8000.dbapi
 pages = ["https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information", "https://learn.microsoft.com/en-us/windows/release-health/release-information"]
 
 
-#connection = pg8000.dbapi.Connection(
-#    host = os.environ['POSTGRES_HOST'],
-#    user = os.environ['POSTGRES_USER'],
-#    password = os.environ['POSTGRES_PASSWORD'],
-#    database = os.environ['POSTGRES_DATABASE'],
-#    port = 5432
-#)
+connection = pg8000.dbapi.Connection(
+    host = os.environ['POSTGRES_HOST'],
+    user = os.environ['POSTGRES_USER'],
+    password = os.environ['POSTGRES_PASSWORD'],
+    database = os.environ['POSTGRES_DATABASE'],
+    port = 5432
+)
 
 
 app = Flask(__name__)
@@ -28,13 +28,13 @@ def home():
 
 @app.route('/latest/<version>', methods=['GET'])
 def latest(version):
-    connection = pg8000.dbapi.Connection(
-        host = os.environ['POSTGRES_HOST'],
-        user = os.environ['POSTGRES_USER'],
-        password = os.environ['POSTGRES_PASSWORD'],
-        database = os.environ['POSTGRES_DATABASE'],
-        port = 5432
-    )
+#    connection = pg8000.dbapi.Connection(
+#        host = os.environ['POSTGRES_HOST'],
+#        user = os.environ['POSTGRES_USER'],
+#        password = os.environ['POSTGRES_PASSWORD'],
+#        database = os.environ['POSTGRES_DATABASE'],
+#        port = 5432
+#    )
 
     sql = connection.cursor()
     sql.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
