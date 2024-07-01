@@ -27,7 +27,7 @@ def home():
 
 
 @app.route('/latest/<version>', methods=['GET'])
-def latest(connection, version):
+def latest(version):
     connection = pg8000.dbapi.Connection(
         host = os.environ['POSTGRES_HOST'],
         user = os.environ['POSTGRES_USER'],
