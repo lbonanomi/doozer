@@ -32,7 +32,7 @@ def latest(version):
     latest_patch = sql.fetchone()
     latest_patch_number = latest_patch[0]   # Bold of you to beta the latest patch
     latest_patch_authority = latest_patch[1]
-    latest_patch_kb = latest_patch[2] #.replace("KB", "https://support.microsoft.com/help/")
+    latest_patch_kb = latest_patch[2].replace("KB", "https://support.microsoft.com/help/")
     
     stable_patch = sql.fetchone()
     stable_patch_number = stable_patch[0]   # What most sensible folks deploy
