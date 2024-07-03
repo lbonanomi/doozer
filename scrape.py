@@ -16,10 +16,7 @@ connection = psycopg2.connect(
   sslmode='require'
 )
 
-print(len(user), len(password))
-
 sql = connection.cursor()
-
 
 for page in pages:
   data = requests.get(page, timeout=10).text
