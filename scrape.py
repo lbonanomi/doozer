@@ -16,6 +16,8 @@ connection = psycopg2.connect(
   sslmode='require'
 )
 
+print(len(user), len(password))
+
 sql = connection.cursor()
 
 
