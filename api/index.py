@@ -37,12 +37,12 @@ def latest(version):
     stable_patch = sql.fetchone()
     stable_patch_number = stable_patch[0]   # What most sensible folks deploy
     stable_patch_authority = stable_patch[1]
-    stable_patch_kb = stable_patch[2] #.replace("KB", "https://support.microsoft.com/help/")
+    stable_patch_kb = stable_patch[2].replace("KB", "https://support.microsoft.com/help/")
     
     prior_patch = sql.fetchone()
     prior_patch_number = prior_patch[0]    # Acceptable for-now
     prior_patch_authority = prior_patch[1]
-    prior_patch_kb = prior_patch[2] #.replace("KB", "https://support.microsoft.com/help/")
+    prior_patch_kb = prior_patch[2].replace("KB", "https://support.microsoft.com/help/")
     
 
     sql.close()
