@@ -4,4 +4,7 @@ import psycopg2
 import os
 import re
 
-print(len(user), len(password))
+print(
+  len(os.environ['POSTGRES_USER']), 
+  len(os.environ['POSTGRES_PASSWORD'])
+     )
