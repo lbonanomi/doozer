@@ -52,19 +52,17 @@ for page in pages:
       except IndexError:
         continue
 
-        try:
-          kb = columns[3].text
-        except IndexError:
-          continue
+      try:
+        kb = columns[3].text
+      except IndexError:
+        continue
 
 
-        if re.search("[0-9]{4}\-[0-9]{2}\-[0-9]{2}", avail_date):
-          print("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
+      if re.search("[0-9]{4}\-[0-9]{2}\-[0-9]{2}", avail_date):
+        print("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
 
-          sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
+        sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
 
-          #v = sql.fetchall()
-          #print(v)
 
 connection.commit()
 sql.close()
