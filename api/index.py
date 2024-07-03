@@ -1,7 +1,7 @@
+import json
 import os
 from time import strftime, localtime
-import json
-from flask import Flask
+from flask import Flask, jsonify
 import psycopg2
 
 
@@ -67,4 +67,4 @@ def latest(version):
 
     #return json.dumps(result) + "\n"
 
-    return(Response(json.dumps(result), mimetype="application/json")) 
+    return jsonify(result) 
