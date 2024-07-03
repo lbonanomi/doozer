@@ -34,7 +34,7 @@ def latest(version):
     prior_patch = sql.fetchone()[0]    # Acceptable for-now
     authority = sql.fetchone()[0]      # Who says
     
-    
+    sql.close()
     connection.close()
 
     result = { "release":version, "latest_patch":latest_patch, "stable_patch":stable_patch, "previous_patch":prior_patch, "authority": authority  }
