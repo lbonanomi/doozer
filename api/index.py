@@ -57,6 +57,7 @@ def latest(version):
     connection.close()
 
     #result = { "release":version, "latest_patch":latest_patch_number, "stable_patch":stable_patch_number, "previous_patch":prior_patch_number, "authority": latest_patch_authority  }
+    
     result = { 
         "release":version, 
         "latest": { "patch_number": latest_patch_number, "authority": latest_patch_authority, "kb": latest_patch_kb }, 
@@ -64,4 +65,6 @@ def latest(version):
         "previous": { "patch_number": prior_patch_number, "authority": prior_patch_authority, "kb": prior_patch_kb } 
     }
 
-    return json.dumps(result) + "\n"
+    #return json.dumps(result) + "\n"
+
+    return(Response(json.dumps(result), mimetype="application/json")) 
