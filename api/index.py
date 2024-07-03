@@ -2,7 +2,7 @@ import os
 from time import strftime, localtime
 import json
 from flask import Flask
-import psycopg2-binary
+import psycopg2
 
 
 pages = ["https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information", "https://learn.microsoft.com/en-us/windows/release-health/release-information"]
