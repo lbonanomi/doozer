@@ -27,16 +27,23 @@ def home():
 @app.route('/latest/<version>', methods=['GET'])
 def latest(version):
     sql = connection.cursor()
-    sql.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
+    sql.execute("SELECT DISTINCT(patch), authority FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
 
-    latest_patch = sql.fetchone()[0]   # Bold of you to beta the latest patch
-    stable_patch = sql.fetchone()[0]   # What most sensible folks deploy
-    prior_patch = sql.fetchone()[0]    # Acceptable for-now
-    authority = sql.fetchone()[0]      # Who says
+    latest_patch = sql.fetchone()
+    latest_patch_number = latest_patch[0]   # Bold of you to beta the latest patch
+    latest_patch_authority = latest_patch[1]
     
+    stable_patch = sql.fetchone()
+    stable_patch_number = stable_patch[0]   # What most sensible folks deploy
+    stable_patch_authority = stable_patch[1]
+    
+    prior_patch = sql.fetchone()
+    prior_patch_number = prior_patch[0]    # Acceptable for-now
+    prior_patch_authority = prior_patch[1]
+
     sql.close()
     connection.close()
 
-    result = { "release":version, "latest_patch":latest_patch, "stable_patch":stable_patch, "previous_patch":prior_patch, "authority": authority  }
+    result = { "release":version, "latest_patch":latest_patch_number, "stable_patch":stable_patch_number, "previous_patch":prior_patch_number, "authority": latest_patch_authority  }
 
     return json.dumps(result) + "\n"
