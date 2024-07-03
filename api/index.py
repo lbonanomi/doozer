@@ -25,6 +25,7 @@ def home():
 
 
 @app.route('/latest/<version>', methods=['GET'])
+def latest(version):
     sql = connection.cursor()
     sql.execute("SELECT DISTINCT(patch) FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
 
