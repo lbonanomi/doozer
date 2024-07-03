@@ -2,13 +2,13 @@ import os
 from time import strftime, localtime
 import json
 from flask import Flask
-import pg8000.dbapi
+import psycopg2-binary
 
 
 pages = ["https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information", "https://learn.microsoft.com/en-us/windows/release-health/release-information"]
 
 
-connection = pg8000.dbapi.Connection(
+connection = psycopg2.connect(
     host = os.environ['POSTGRES_HOST'],
     user = os.environ['POSTGRES_USER'],
     password = os.environ['POSTGRES_PASSWORD'],
