@@ -15,14 +15,14 @@ def home():
     <p>This is an appliance that digests the tables of Windows patch version information on """ + " and ".join(pages) + """ and converts them into a RESTful query endpoint</p>
     <p>Why not try it?</p> 
     <ul>
-    <li><a href="/latest/19045">/latest/19045</a> for the latest-minus-one patch version for Windows 10 Release 22H2</li>
     <li><a href="/latest/19044">/latest/19044</a> for the latest-minus-one patch version for Windows 10 Release 21H2</li>
-    <li><a href="/latest/22631">/latest/22631</a> for the latest-minus-one patch version for Windows 11 Release 23H2</li>
+    <li><a href="/latest/19045">/latest/19045</a> for the latest-minus-one patch version for Windows 10 Release 22H2</li>
     <li><a href="/latest/22631">/latest/22621</a> for the latest-minus-one patch version for Windows 11 Release 22H2</li>
+    <li><a href="/latest/22631">/latest/22631</a> for the latest-minus-one patch version for Windows 11 Release 23H2</li>
     </ul>
-    <br><br>
-    Please see Github repo for API calls to refresh database or push-down dummy patch records 
     <br><br>"""
+
+    return usage
 
 @app.route('/latest/<version>', methods=['GET'])
 def latest(version):
