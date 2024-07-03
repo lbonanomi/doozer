@@ -7,25 +7,33 @@ import psycopg2
 
 pages = ["https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information", "https://learn.microsoft.com/en-us/windows/release-health/release-information"]
 
-
-connection = psycopg2.connect(
-    host = os.environ['POSTGRES_HOST'],
-    user = os.environ['POSTGRES_USER'],
-    password = os.environ['POSTGRES_PASSWORD'],
-    database = os.environ['POSTGRES_DATABASE'],
-    port = 5432
-)
-
-
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
-    return 'Hello, World!'
-
+    usage = """
+    <p>This is an appliance that digests the tables of Windows patch version information on """ + " and ".join(pages) + """ and converts them into a RESTful query endpoint</p>
+    <p>Why not try it?</p> 
+    <ul>
+    <li><a href="/latest/19045">/latest/19045</a> for the latest-minus-one patch version for Windows 10 Release 22H2</li>
+    <li><a href="/latest/19044">/latest/19044</a> for the latest-minus-one patch version for Windows 10 Release 21H2</li>
+    <li><a href="/latest/22631">/latest/22631</a> for the latest-minus-one patch version for Windows 11 Release 23H2</li>
+    <li><a href="/latest/22631">/latest/22621</a> for the latest-minus-one patch version for Windows 11 Release 22H2</li>
+    </ul>
+    <br><br>
+    Please see Github repo for API calls to refresh database or push-down dummy patch records 
+    <br><br>"""
 
 @app.route('/latest/<version>', methods=['GET'])
 def latest(version):
+    connection = psycopg2.connect(
+        host = os.environ['POSTGRES_HOST'],
+        user = os.environ['POSTGRES_USER'],
+        password = os.environ['POSTGRES_PASSWORD'],
+        database = os.environ['POSTGRES_DATABASE'],
+        port = 5432
+    )
+    
     sql = connection.cursor()
     sql.execute("SELECT DISTINCT(patch), authority, kb FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
 
