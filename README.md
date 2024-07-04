@@ -2,9 +2,10 @@
 
 > In God we trust, all others we audit
 
+
 This is an appliance that digests the tables of Windows patch version information on https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information and https://learn.microsoft.com/en-us/windows/release-health/release-information and converts them into a RESTful query endpoint. 
 
-This system graciously [hosted](https://doozer.vercel.app/) by [Vercel](https://vercel.com/) on a hobby plan, please don;t make them regret their generosity.
+This system graciously [hosted](https://doozer.vercel.app/) by [Vercel](https://vercel.com/) on a hobby plan, please don't make them regret their generosity.
 
 ## Example output
 
