@@ -7,6 +7,7 @@ import re
 
 pages = ["https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information" , "https://learn.microsoft.com/en-us/windows/release-health/release-information"]
 
+
 connection = psycopg2.connect(
   host = os.environ['POSTGRES_HOST'],
   user = os.environ['POSTGRES_USER'],
@@ -59,8 +60,7 @@ for page in pages:
 
 
       if re.search("[0-9]{4}\-[0-9]{2}\-[0-9]{2}", avail_date):
-        print("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
-
+        #print("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
         sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
 
 

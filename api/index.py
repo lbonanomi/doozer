@@ -65,6 +65,4 @@ def latest(version):
         "previous": { "patch_number": prior_patch_number, "authority": prior_patch_authority, "kb": prior_patch_kb } 
     }
 
-    #return json.dumps(result) + "\n"
-
     return jsonify(result) 
