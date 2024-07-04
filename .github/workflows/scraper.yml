@@ -1,0 +1,30 @@
+name: Scrape MS Distro Sites
+
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    env:
+      POSTGRES_USER:     ${{ secrets.POSTGRES_USER     }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_HOST:     ${{ secrets.POSTGRES_HOST     }}
+      POSTGRES_DATABASE: ${{ secrets.POSTGRES_DATABASE }}
+      
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4 psycopg2-binary
+
+    - name: Populate 
+      run: python3 ./scrape.py
