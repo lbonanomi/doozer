@@ -60,7 +60,6 @@ for page in pages:
 
 
       if re.search("[0-9]{4}\-[0-9]{2}\-[0-9]{2}", avail_date):
-        #print("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
         sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
 
 
