@@ -7,6 +7,21 @@ This is an appliance that digests the tables of Windows patch version informatio
 
 This system graciously [hosted](https://doozer.vercel.app/) by [Vercel](https://vercel.com/) on a hobby plan, please don't make them regret their generosity.
 
+
+## Response structure
+
+**Queries will always return 3 values:**
+
+`latest`: The latest patch for the product number  
+`stable`: The next-latest patch for the product number for shops using a latest-but-one standard  
+`previous`: The second-latest patch for the product number for shops that consider this the oldest-acceptable version  
+
+**Each value features:**
+
+`authority`: Which [https://learn.microsoft.com](https://learn.microsoft.com) URL mentions this patch  
+`kb`: The [support.microsoft.com](https://support.microsoft.com) URL detailing that individual patch  
+`patch_number`: The patch number  
+
 ## Example output
 
 https://doozer.vercel.app/latest/19044:
