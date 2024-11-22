@@ -3,7 +3,7 @@ name: Scrape MS Distro Sites
 
 on:
   schedule:
-    -   cron:  '0 30 * * *'
+    -   cron:  '45 0 * * *'
 
 
 jobs:
