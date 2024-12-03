@@ -17,7 +17,7 @@ def home():
     <ul>
     <li><a href="/latest/19044">/latest/19044</a> for the latest-minus-one patch version for Windows 10 Release 21H2</li>
     <li><a href="/latest/19045">/latest/19045</a> for the latest-minus-one patch version for Windows 10 Release 22H2</li>
-    <li><a href="/latest/22631">/latest/22621</a> for the latest-minus-one patch version for Windows 11 Release 22H2</li>
+    <li><a href="/latest/22621">/latest/22621</a> for the latest-minus-one patch version for Windows 11 Release 22H2</li>
     <li><a href="/latest/22631">/latest/22631</a> for the latest-minus-one patch version for Windows 11 Release 23H2</li>
     </ul>
     <br><br>
