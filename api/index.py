@@ -74,6 +74,7 @@ def latest(version):
 # or ready for prod yet.
 #
 
+@app.route('/macos/<version>', methods=['GET'])
 def macos(version):
     connection = psycopg2.connect(
         host = os.environ['POSTGRES_HOST'],
