@@ -50,6 +50,6 @@ https://doozer.vercel.app/latest/19044:
 
 **TODO:** automate this.
 
-`create table windows(service_option VARCHAR(50), availability_date DATE, release VARCHAR(50), patch VARCHAR(50), authority VARCHAR(255) );`
+`create table windows(service_option VARCHAR(50), availability_date DATE, release VARCHAR(50), patch INT, authority VARCHAR(255) );`
 
 
