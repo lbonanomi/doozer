@@ -68,3 +68,50 @@ def latest(version):
     }
 
     return jsonify(result) 
+
+#
+# This functionality is not advertised
+# or ready for prod yet.
+#
+
+def macos(version):
+    connection = psycopg2.connect(
+        host = os.environ['POSTGRES_HOST'],
+        user = os.environ['POSTGRES_USER'],
+        password = os.environ['POSTGRES_PASSWORD'],
+        database = os.environ['POSTGRES_DATABASE'],
+        port = 5432
+    )
+
+    sql = connection.cursor()
+    sql.execute("SELECT DISTINCT(patch), authority, kb FROM macos WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
+
+    latest_patch = sql.fetchone()
+    latest_patch_number = latest_patch[0]   # Point
+    latest_patch_authority = latest_patch[1]
+    latest_patch_kb = latest_patch[2]
+    
+    stable_patch = sql.fetchone()
+    stable_patch_number = stable_patch[0]   # 
+    stable_patch_authority = stable_patch[1]
+    stable_patch_kb = stable_patch[2]
+    
+    prior_patch = sql.fetchone()
+    prior_patch_number = prior_patch[0]
+    prior_patch_authority = prior_patch[1]
+    prior_patch_kb = prior_patch[2]
+
+    sql.close()
+    connection.close()
+
+    #result = { "release":version, "latest_patch":latest_patch_number, "stable_patch":stable_patch_number, "previous_patch":prior_patch_number, "authority": latest_patch_authority  }
+    
+    result = { 
+        "release":version, 
+        "latest": { "patch_number": latest_patch_number, "authority": latest_patch_authority, "kb": latest_patch_kb }, 
+        "stable": { "patch_number": stable_patch_number, "authority": stable_patch_authority, "kb": stable_patch_kb }, 
+        "previous": { "patch_number": prior_patch_number, "authority": prior_patch_authority, "kb": prior_patch_kb } 
+    }
+
+    return jsonify(result) 
+    
