@@ -37,7 +37,7 @@ def latest(version):
     )
     
     sql = connection.cursor()
-    sql.execute("SELECT DISTINCT(patch), authority, kb FROM windows WHERE release = '{release}' ORDER BY patch::int DESC".format(release = version))
+    sql.execute("SELECT DISTINCT(patch), authority, kb FROM windows WHERE release = '{release}' ORDER BY patch DESC".format(release = version))
 
     latest_patch = sql.fetchone()
     latest_patch_number = latest_patch[0]   # Bold of you to beta the latest patch
