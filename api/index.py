@@ -19,6 +19,7 @@ def home():
     <li><a href="/latest/19045">/latest/19045</a> for the latest-minus-one patch version for Windows 10 Release 22H2</li>
     <li><a href="/latest/22621">/latest/22621</a> for the latest-minus-one patch version for Windows 11 Release 22H2</li>
     <li><a href="/latest/22631">/latest/22631</a> for the latest-minus-one patch version for Windows 11 Release 23H2</li>
+    <li><a href="/latest/26100">/latest/26100</a> for the latest-minus-one patch version for Windows 11 Release 24H2</li>
     </ul>
     <br><br>
     Sourcecode is <a href="https://github.com/botonomi/doozer">public on Github</a>
@@ -115,4 +116,3 @@ def macos(version):
     }
 
     return jsonify(result) 
-    
