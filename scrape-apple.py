@@ -34,6 +34,11 @@ for page in ['https://support.apple.com/en-us/100100']:
                         for links in columns[0].findAll('a'):
                             stem = "https://support.apple.com" + links.get('href')
 
+                        try:
+                            stem
+                        except NameError:
+                            stem = ""
+                      
                         patchArr = columns[0].text.split()
                         patch = re.sub('[A-Za-z]', '', patchArr[2])
 
