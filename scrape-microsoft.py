@@ -59,8 +59,8 @@ for page in pages:
         continue
 
 
-      if re.search("[0-9]{4}\-[0-9]{2}\-[0-9]{2}", release):
-        sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, release, avail_date, patch, page, kb))
+      if re.search("[0-9]{4}\-[0-9]{2}\-[0-9]{2}", avail_date):
+        sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
 
 
 connection.commit()
