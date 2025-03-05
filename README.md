@@ -1,6 +1,6 @@
 # doozer
 
-> I'm old school. I remember when patches were so-infrequent<br>
+> I'm _old school_. I remember when patches were so-infrequent<br>
 > that they came _on diskettes_ sent through the _mail_.
 
 
