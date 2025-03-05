@@ -1,4 +1,4 @@
-name: Scrape MS Distro Sites
+name: Scrape MS Distro Sites (Manual Trigger)
 
 
 on:
