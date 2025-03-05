@@ -19,6 +19,7 @@ connection = psycopg2.connect(
 
 sql = connection.cursor()
 
+
 for page in pages:
   data = requests.get(page, timeout=10).text
 
@@ -37,12 +38,12 @@ for page in pages:
         continue
 
       try:
-        avail_date = columns[1].text
+        avail_date = columns[2].text
       except IndexError:
         continue
 
       try:
-        build = columns[2].text
+        build = columns[3].text
 
         if "." in build:
           (release, patch) = build.split(".")
@@ -54,10 +55,9 @@ for page in pages:
         continue
 
       try:
-        kb = columns[3].text
+        kb = columns[4].text
       except IndexError:
         continue
-
 
       if re.search("[0-9]{4}\-[0-9]{2}\-[0-9]{2}", avail_date):
         sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
