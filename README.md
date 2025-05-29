@@ -1,9 +1,11 @@
 # doozer
 
+
 > I'm _old school_. I remember when patches were so-infrequent<br>
 > that they came _on diskettes_ sent through the _mail_.
 
 
+## NOTE: Windows 10 patches `OOB`-type updates are dropped from this database and are being actively-filtered during ingestion  
 
 
 This is an appliance that digests the tables of Windows patch version information on https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information and https://learn.microsoft.com/en-us/windows/release-health/release-information and converts them into a RESTful query endpoint. 
