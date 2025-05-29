@@ -36,7 +36,12 @@ for page in pages:
         svc_option = columns[0].text
       except IndexError:
         continue
-
+        
+      try:
+        type = columns[1].text
+      except IndexError:
+        continue
+        
       try:
         avail_date = columns[2].text
       except IndexError:
@@ -59,8 +64,11 @@ for page in pages:
       except IndexError:
         continue
 
-      if re.search("[0-9]{4}\-[0-9]{2}\-[0-9]{2}", avail_date):
-        sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
+      # Windows 10 has started spouting "OOB" patches not appropriate for mainstream. 
+      #
+      if "OOB" not in type:
+        if re.search("[0-9]{4}\-[0-9]{2}\-[0-9]{2}", avail_date):
+          sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
 
 
 connection.commit()
