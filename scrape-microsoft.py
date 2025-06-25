@@ -64,9 +64,9 @@ for page in pages:
       except IndexError:
         continue
 
-      # Windows 10 has started spouting "OOB" patches not appropriate for mainstream. 
+      # Windows 10 updates are being restricted to the mainstream "B" releases. "OOB" and "D" feature previews will not be carried in the regular channel. 
       #
-      if "OOB" not in type:
+      if "OOB" not in type and "D" not in type:
         if re.search("[0-9]{4}\-[0-9]{2}\-[0-9]{2}", avail_date):
           sql.execute("INSERT INTO windows VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(svc_option, avail_date, release, patch, page, kb))
 
