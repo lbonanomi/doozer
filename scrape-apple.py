@@ -16,7 +16,7 @@ connection = psycopg2.connect(
 sql = connection.cursor()
 
 
-releases = ['Sequoia', 'Sonoma', 'Ventura']
+releases = ['Sequoia', 'Sonoma', 'Ventura', 'Tahoe']
 
 for page in ['https://support.apple.com/en-us/100100']:
     data = requests.get(page, timeout=10).text
