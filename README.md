@@ -5,6 +5,7 @@
 > that they came _on diskettes_ sent through the _mail_.  
 
 
+
 This is an appliance that digests the tables of Windows patch version information on https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information and https://learn.microsoft.com/en-us/windows/release-health/release-information and converts them into a RESTful query endpoint. 
 
 This system is graciously [hosted](https://doozer.vercel.app/) by [Vercel](https://vercel.com/) on a microscopic plan, _please_ don't make them regret their generosity.
